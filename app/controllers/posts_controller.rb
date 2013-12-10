@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   
+  before_action :set_post, only:[:show, :edit, :update]
+
   def show
-    @post = Post.find(params[:id])
   end
 
   def index
@@ -26,14 +27,11 @@ class PostsController < ApplicationController
     
   end
 
-  def edit
-    @post = Post.find(params[:id])
-    
+  def edit    
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.update_attributes(post_params)
+    @post.update(post_params)
 
     if @post.save
       flash[:notice] = "Your post was successfully updated"
@@ -45,6 +43,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :description, :url)
