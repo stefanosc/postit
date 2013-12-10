@@ -1,0 +1,6 @@
+<H3><%= @post.title %></H3>
+
+<div><%= @post.description %></div>
+<br>
+<div><a href="<%= @post.url %>"><%= @post.url %></div>
+<a class="btn" href="<%= edit_post_path(@post) %>">Edit Post</a>
