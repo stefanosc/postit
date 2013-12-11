@@ -16,12 +16,15 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
+    # binding.pry
     if @post.save
       flash[:notice] = "Your post was successfully created"
       redirect_to posts_path
     else
-      
+      if @post.errors.any?
+        flash[:error] = []
+        @post.errors.full_messages.each {|error| flash[:error] << error }
+      end
       render :new
     end
     

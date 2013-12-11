@@ -1,0 +1,18 @@
+All Categories
+
+<table class="table table-hover">
+  <thead>  
+    <tr>  
+      <th>Category Name</th>
+      <th>Posts per Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.posts.size %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
