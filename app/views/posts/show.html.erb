@@ -1,6 +1,22 @@
-<H3><%= @post.title %></H3>
+<%= render 'shared/content_title', title: ((link_to "All Posts", posts_path) +  " > #{@post.title}") %>
 
-<div><%= @post.description %></div>
+<div class="">
+  <div class=""><%= @post.description %></div>
+  <br>
+  <a href="<%= @post.url %>"><%= @post.url %>
+  <br>
+  <br>
+  <a class="btn" href="<%= edit_post_path(@post) %>">Edit Post</a>
+</div>
 <br>
-<div><a href="<%= @post.url %>"><%= @post.url %></div>
-<a class="btn" href="<%= edit_post_path(@post) %>">Edit Post</a>
+
+<div >
+<%= render 'shared/errors', obj: @comment %>
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body, rows: 6, class: "span4" %>
+  <br>
+  <%= f.submit class: "btn" %>
+<% end %>
+<br>
+<br></div>
+<%= render @post.comments %>

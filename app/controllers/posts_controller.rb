@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only:[:show, :edit, :update]
 
   def show
+    @comment = Comment.new
   end
 
   def index
@@ -16,15 +17,14 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # binding.pry
+    
+    @post.creator = User.first
+
     if @post.save
       flash[:notice] = "Your post was successfully created"
       redirect_to posts_path
     else
-      if @post.errors.any?
-        flash[:error] = []
-        @post.errors.full_messages.each {|error| flash[:error] << error }
-      end
+
       render :new
     end
     
@@ -45,6 +45,13 @@ class PostsController < ApplicationController
 
   end
 
+  def search
+    @q = params.permit(:q)[:q]
+    @posts = Post.where('description LIKE ? or title LIKE ? or url LIKE ?', "%#{@q}%","%#{@q}%","%#{@q}%")
+    
+
+  end
+
   private
 
   def set_post
@@ -52,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :url)
+    params.require(:post).permit(:title, :description, :url, category_ids: [])
     
   end
 

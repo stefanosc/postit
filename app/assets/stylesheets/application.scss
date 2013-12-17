@@ -38,6 +38,15 @@ div.nav_item {
   }
 }
 
+.post {
+  .badge {
+    a, a:hover, a:focus {
+      color: #fff;
+      text-decoration: none; 
+    }
+  }
+}
+
 div.comment_votes {
   padding: 10px;
 }

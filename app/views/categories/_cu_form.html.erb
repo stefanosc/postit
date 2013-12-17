@@ -1,15 +1,10 @@
- <% if @category.errors.any? %>
-   <%= @category.errors.full_messages.each do |msg| %>
-     <div class="alert alert-error">
-        <a class="close" data-dismiss="alert">&#215;</a>
-        <%= content_tag :div, msg, :id => "flash_error" %>
-      </div>
-  <% end %>
-<% end %>
+<div class="well">
 
-<%= form_for @category do |f| %>
-  <%= f.label :name %> 
-  <%= f.text_field :name %>
-  <br>
-  <%= f.submit class:"btn" %>
-<% end %>
+  <%= form_for @category do |f| %>
+    <div class="control-group">
+      <%= f.label :name %> 
+      <%= f.text_field :name %>
+    </div>
+    <%= f.submit class:"btn" %>
+  <% end %>
+  </div>

@@ -1,21 +1,27 @@
- <% if @post.errors.any? %>
-   <%= @post.errors.full_messages.each do |msg| %>
-     <div class="alert alert-error">
-        <a class="close" data-dismiss="alert">&#215;</a>
-        <%= content_tag :div, msg, :id => "flash_error" %>
-      </div>
-  <% end %>
-<% end %>
 
-<%= form_for @post do |f| %>
-  <%= f.label :title %> 
-  <%= f.text_field :title %>
-  <br>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <br>
-  <%= f.submit class:"btn" %>
-<% end %>
+<div class="well">
+  <%= form_for @post do |f| %>
+    
+    <div class="control-group">
+      <%= f.label :title %> 
+      <%= f.text_field :title %>
+    </div>
+    <div class="control-group">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    <div class="control-group">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+    <div class="control-group">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <%= cb.label(class: "checkbox inline") {cb.check_box + cb.text} %>
+    <% end %>
+    </div>
+
+     <br>
+
+    <%= f.submit class:"btn btn-primary" %>
+  <% end %>
+</div>

@@ -4,12 +4,5 @@
       <a class="close" data-dismiss="alert">&#215;</a>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     </div>
-  <% elsif msg.is_a?(Array) %>
-  <% msg.each do |msg_string| %>
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">&#215;</a>
-        <%= content_tag :div, msg_string, :id => "flash_#{name}" %>
-      </div>    
-    <% end %>
   <% end %>
 <% end %>
