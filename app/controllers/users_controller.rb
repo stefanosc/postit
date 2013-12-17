@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "You have successfully registered"
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       render :new  
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.new
+    @user = User.find(session[:user_id])
   end
 
   def update

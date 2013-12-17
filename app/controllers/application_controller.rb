@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
     if !logged_in?
       flash[:error] = "You need to be logged in to access this feature"
       session[:login_referrer] = request.env["HTTP_X_XHR_REFERER"]
-      redirect_to(login_path) and return
-
+      redirect_to(login_path)
     end
   
   end 

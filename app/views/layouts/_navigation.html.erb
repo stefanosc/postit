@@ -19,23 +19,24 @@
         </ul>
       </div>
     </li>
-    <% if logged_in? -%>
-      <li>
-        Hello <%= current_user.username %>
-      </li>
-      <li>
-        <%= link_to 'Logout', logout_path %>
-      </li>
-    <%- else -%>
-      <li>
-        <%= link_to 'Login', login_path %>
-      </li>
-      <li>
-        <%= link_to 'Register', register_path %>
-      </li>    
-    <%- end -%>
-
-    <li class="span4">
+    <li class="span1">
+      <% if logged_in? -%>
+        <li style="padding: 10px 20px">
+          Hello <%= current_user.username %>
+        </li>
+        <li>
+          <%= link_to 'Logout', logout_path %>
+        </li>
+      <%- else -%>
+        <li>
+          <%= link_to 'Login', login_path %>
+        </li>
+        <li>
+          <%= link_to 'Register', register_path %>
+        </li>    
+      <%- end -%>
+    </li>
+    <li class="span3">
       <div class="navbar-form pull-right">
         <%= form_tag(search_posts_path, method: :get) do -%>
         <%= text_field_tag 'q', nil, placeholder: 'Enter search term...' %>

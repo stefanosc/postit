@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  
+  before_action :require_user
+
   def create
-    require_user
-    
+
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     
