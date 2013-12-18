@@ -1,11 +1,15 @@
 class SessionsController < ApplicationController
 
+  before_action :require_guest, except: [:destroy, :create]
+
   def new
-    redirect_to profile_path if logged_in?
+    # redirect_to profile_path if logged_in?
     session[:login_referrer] = request.env["HTTP_REFERER"] if !session[:login_referrer]
   end
 
   def create
+    # redirect_to profile_path if logged_in?
+
     user = User.find_by(username: params[:username])
     
     if user && user.authenticate(params[:password])

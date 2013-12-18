@@ -20,18 +20,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
   end
 
   def edit
-    @user = current_user
-    # binding.pry
   end
 
   def update
-    @user.update(user_params)
+    current_user.update(user_params)
 
-    if @user.save
+    if current_user.save
       flash[:notice] = "You have successfully updated your profile"
       redirect_to profile_path
     else
