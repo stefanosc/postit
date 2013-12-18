@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
 
   def new
+    redirect_to profile_path if logged_in?
     session[:login_referrer] = request.env["HTTP_REFERER"] if !session[:login_referrer]
-    binding.pry
   end
 
   def create

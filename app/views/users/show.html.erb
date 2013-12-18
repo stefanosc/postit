@@ -1,0 +1,8 @@
+<%= render 'shared/content_title', title: "#{@user.username} profile:" %>
+
+<dl class="dl-horizontal">
+  <dt>Username:</dt>
+    <dd><%= @user.username %></dd>
+</dl>
+
+<%= link_to 'Edit Profile', profile_edit_path %>

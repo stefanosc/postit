@@ -3,6 +3,7 @@ PostitTemplate::Application.routes.draw do
 
   get '/register', to: 'users#new'
   get '/profile', to: 'users#show'
+  get '/profile/edit', to: 'users#edit'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -15,7 +16,7 @@ PostitTemplate::Application.routes.draw do
   end
 
   resources :categories, except: [:destroy]
-  resources :users, except: [:index, :destroy, :new, :show]
+  resources :users, except: [:index, :destroy, :new, :show, :edit]
 
 
 end

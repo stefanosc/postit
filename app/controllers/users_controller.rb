@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_action :require_user, except: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -18,15 +20,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @user = current_user
   end
 
   def edit
-    @user = User.find(session[:user_id])
+    @user = current_user
+    # binding.pry
   end
 
   def update
-    
+    @user.update(user_params)
+
+    if @user.save
+      flash[:notice] = "You have successfully updated your profile"
+      redirect_to profile_path
+    else
+      render :edit
+    end
   end
 
   private
