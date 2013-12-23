@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       redirect_to session[:login_referrer]
       session[:login_referrer] = nil
     else
-      flash[:error] = "Oops there was a problem with your username or password"
+      flash.now[:error] = "Oops there was a problem with your username or password"
       render :new 
     end
     

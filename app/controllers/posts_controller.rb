@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+
   
-  before_action :set_post, only:[:show, :edit, :update]
+  before_action :set_post, only:[:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index, :search]
 
   def show
@@ -8,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.limit(10)
   end
   
   def new
@@ -46,12 +47,27 @@ class PostsController < ApplicationController
 
   end
 
+  def vote
+    # binding.pry
+    @vote = Vote.create(votable: @post, creator: current_user, vote: params[:vote])
+
+    if @vote.valid?
+      flash[:notice] = "Your vote was registered"
+    else
+      flash[:error] = "You have already voted on this post"
+    end
+
+    redirect_to :back
+    
+  end
+
   def search
     @q = params.permit(:q)[:q]
     @posts = Post.where('description LIKE ? or title LIKE ? or url LIKE ?', "%#{@q}%","%#{@q}%","%#{@q}%")
     
 
   end
+
 
   private
 
