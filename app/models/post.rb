@@ -12,16 +12,6 @@ class Post < ActiveRecord::Base
   validates :title, :description, :url, presence: true
   validates_uniqueness_of :url, { case_sensitive: false }
 
+  include CalculateVotes
 
-  def total_votes
-    up_votes - down_votes
-  end
-
-  def up_votes
-    self.votes.where(vote: true).size
-  end
-
-  def down_votes
-    self.votes.where(vote: false).size    
-  end
 end

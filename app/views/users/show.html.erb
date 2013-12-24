@@ -1,34 +1,34 @@
-<%= render 'shared/content_title', title: "#{current_user.username} profile:" %>
+<%= render 'shared/content_title', title: "#{@user.username} profile:" %>
 
 <div class="well">
   <dl class="dl-horizontal">
     <dt>Username:</dt>
-      <dd><%= current_user.username %></dd>
+      <dd><%= @user.username %></dd>
     <dt>Timezone:</dt>
-      <dd><%= current_user.username %></dd>
+      <dd><%= @user.username %></dd>
     <dt>Two factor auth:</dt>
-      <dd><%= current_user.username %></dd>
+      <dd><%= @user.username %></dd>
     <dt>Phone:</dt>
-      <dd><%= current_user.username %></dd>
+      <dd><%= @user.username %></dd>
   </dl>
 </div>
 
 <p>
-  <strong><%= current_user.username %>'s Activity</strong>
+  <strong><%= @user.username %>'s Activity</strong>
 </p>
 <ul class="nav nav-tabs">
 <li class="<%= 'active' if params[:tab].nil? %>">
-  <%= link_to "Posts #{current_user.posts.size}", user_path(current_user) %>
+  <%= link_to "Posts #{@user.posts.size}", user_path(@user) %>
 </li>
 <li class="<%= 'active' if params[:tab] == 'comment' %>">
-  <%= link_to "Comments #{current_user.comments.size}", user_path( current_user, tab: 'comment') %>
+  <%= link_to "Comments #{@user.comments.size}", user_path( @user, tab: 'comment') %>
 </li>
 </ul>
 
 <% if params[:tab].nil? %>
-  <%= render current_user.posts %>
+  <%= render @user.posts %>
 
 <%- elsif params[:tab] == 'comment' -%>
-  <%= render current_user.comments, show_post: true %>
+  <%= render @user.comments, show_post: true %>
 
 <%- end -%>
