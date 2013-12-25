@@ -1,4 +1,4 @@
-<% title = @posts.blank? ? "Your search for: '#{@q}' didn't match any post" : "Your search for: '#{@q}' mathces the following posts" %>
+<% title = @posts.blank? ? "Your search for: '#{@q}' didn't match any post" : "Your search for: '#{@q}' matches the following posts" %>
 <%= render 'shared/content_title', title: title  %>
 
 <%= render @posts %>
