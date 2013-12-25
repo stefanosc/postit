@@ -57,10 +57,11 @@
         
       <%- end -%>
     </li>
-    <li class="span3">
+    <li class="span4">
       <div class="navbar-form pull-right">
         <%= form_tag(search_posts_path, method: :get) do -%>
         <%= text_field_tag 'q', nil, placeholder: 'Enter search term...' %>
+        <%= submit_tag "search", class: "btn" %>
         <%- end -%>
       </div>
       <li>        
