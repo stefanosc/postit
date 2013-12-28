@@ -1,19 +1,11 @@
 <%= render 'shared/content_title', title: ((link_to "All Posts", posts_path) +  " > #{@post.title}") %>
 
-<div class="">
-  <div class=""><%= @post.description %></div>
-  <br>
-  <a href="<%= @post.url %>"><%= @post.url %></a>
-  <br>
-  <br>
-  <% if logged_in? && @post.creator == current_user -%>
-    <a class="btn" href="<%= edit_post_path(@post) %>">Edit Post</a>
-  <%- end -%>
-</div>
+<%= render @post, post_view: true %>
+
 <br>
 
 <%- if logged_in? -%>
-<div >
+<div class="row" >
   <%= render 'shared/errors', obj: @comment %>
   <%= form_for [@post, @comment] do |f| %>
     <%= f.text_area :body, rows: 6, class: "span4" %>
@@ -24,4 +16,9 @@
   <br>
 </div>
 <%- end -%>
+
+<p class="lead">
+  Comments
+  <hr/>
+</p>
 <%= render @post.comments %>

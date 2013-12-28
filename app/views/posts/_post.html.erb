@@ -1,3 +1,4 @@
+<% post_view ||= false %>
   <div class="row post">
     <div class="span0 well text-center">
       <%- if logged_in? -%>
@@ -15,17 +16,32 @@
       <%- end -%>
     </div>
     <div class="span8 well">
+
+      <% if logged_in? && post.creator == current_user -%>
+        <div class="btn-group pull-right">
+          <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><%= link_to edit_post_path(post) do %>
+              <i class="icon-pencil"></i> edit
+              <% end %></li>
+          </ul>
+        </div>
+      <%- end -%>
+
+
       <%= render post.categories %>
       <h4><%= link_to post.title, fix_url(post.url) %></h4>
       <p><%= post.description %></p>
-      <p>
-        <span class="quiet">posted by:</span> <%= link_to post.creator.username, user_path(post.creator) %>
-        <small>at <%= fix_date(post.created_at) %></small>
-      </p>
-      <small>
-        <span>
-          <%= link_to "#{post.comments.size} comments" , post_path(post) %>
-        </span>
-      </small>
+      <% if !post_view %>
+        <p>
+          <span class="quiet">posted by:</span> <%= link_to post.creator.username, user_path(post.creator) %>
+          <small>at <%= fix_date(post.created_at) %></small>
+        </p>
+        <small>
+          <span>
+            <%= link_to "#{post.comments.size} comments" , post_path(post) %>
+          </span>
+        </small>
+      <% end %>
     </div>
   </div>
