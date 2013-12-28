@@ -51,13 +51,19 @@ class PostsController < ApplicationController
     # binding.pry
     @vote = Vote.create(votable: @post, creator: current_user, vote: params[:vote])
 
-    if @vote.valid?
-      flash[:notice] = "Your vote was registered"
-    else
-      flash[:error] = "You have already voted on this post"
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Your vote was registered' }
+      format.js
     end
 
-    redirect_to :back
+
+    # if @vote.valid?
+    #   flash[:notice] = "Your vote was registered"
+    # else
+    #   flash[:error] = "You have already voted on this post"
+    # end
+
+    # redirect_to :back
     
   end
 
