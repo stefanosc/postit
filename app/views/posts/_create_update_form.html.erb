@@ -1,7 +1,12 @@
 
-<div class="well">
+<div id="edit_post_<%= @post.id %>_wrapper" class="well span8">
   <%= form_for @post do |f| %>
     
+    <div class="control-group">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <%= cb.label(class: "checkbox inline") {cb.check_box + cb.text} %>
+    <% end %>
+    </div>
     <div class="control-group">
       <%= f.label :title %> 
       <%= f.text_field :title %>
@@ -14,14 +19,8 @@
       <%= f.label :url %>
       <%= f.text_field :url %>
     </div>
-    <div class="control-group">
-    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-      <%= cb.label(class: "checkbox inline") {cb.check_box + cb.text} %>
-    <% end %>
-    </div>
-
-     <br>
 
     <%= f.submit class:"btn btn-primary" %>
+    <%= f.submit 'Cancel', {class:"btn", id:"cancel_edit_#{@post.id}"}%>
   <% end %>
 </div>

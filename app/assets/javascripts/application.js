@@ -16,3 +16,8 @@
 //= require_tree .
 //= require bootstrap
 
+// $('#cancel_edit_22').click( function() {
+//   $('#edit_post_22_wrapper').remove();
+//   $('#post_22_wrapper').show();
+// } );
+// return false;

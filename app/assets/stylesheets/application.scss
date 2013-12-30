@@ -51,3 +51,9 @@ div.comment_votes {
   padding: 10px;
 }
 
+.edit_post {
+  input[type=text], textarea {
+    width: 90%;
+  }
+}
+

@@ -1,0 +1,2 @@
+$('#post_<%= @post.id %>_wrapper').hide();
+$('#post_<%= @post.id %>_wrapper').before("<%= escape_javascript(render 'create_update_form') %>");
