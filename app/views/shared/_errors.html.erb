@@ -1,5 +1,6 @@
+<%- ajax ||= false -%>
 <% if obj.errors.any? %>
-  <div class="row">
+  <div <%- if !ajax -%>class="row"<%- end -%> id="error_wrapper">
     <div class="alert alert-error span8">
       <h5>Please correct the following errors:</h5>
       <ul>

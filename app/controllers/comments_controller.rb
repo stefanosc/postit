@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully created comment"
       redirect_to post_path(@post)
     else
+        @post.comments.reload
         render 'posts/show'
     end
   end

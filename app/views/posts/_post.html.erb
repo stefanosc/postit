@@ -1,6 +1,6 @@
-<% post_view ||= false %>
-  <div class="row post">
-    <div class="span0 well text-center">
+<%- post_view ||= false -%>
+  <div class="row post" id="post_<%= post.id %>_container">
+    <div class="span0 well text-center" id="vote_<%= post.id %>_wrapper">
       <%- if logged_in? -%>
         <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
           <i class="icon-arrow-up"></i>
@@ -15,6 +15,7 @@
         <%- end -%>
       <%- end -%>
     </div>
+
     <div class="span8 well" id="post_<%= post.id %>_wrapper">
 
       <% if logged_in? && post.creator == current_user -%>

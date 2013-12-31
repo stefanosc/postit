@@ -38,12 +38,36 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
 
-    if @post.save
-      flash[:notice] = "Your post was successfully updated"
-      redirect_to posts_path
-    else
-      render :edit
+
+    respond_to do |format|
+      
+      format.html {
+        if @post.save
+          flash[:notice] = "Your post was successfully updated"
+          redirect_to posts_path
+        else
+          render :edit
+        end
+      }
+
+      format.js {
+        if params[:commit] == "Cancel"
+          render :cancel_edit
+          
+        elsif params[:commit] == "Update Post"
+
+          if @post.save
+            render :update
+          else
+            render :edit
+          end
+
+        end
+      }
+
     end
+
+    
 
   end
 
