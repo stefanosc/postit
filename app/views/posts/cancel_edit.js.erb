@@ -1,0 +1,7 @@
+if ($('#post_<%= @post.id %>_container #error_wrapper').length > 0) 
+  { 
+    $('#error_wrapper').remove();
+  }
+
+$('#edit_post_<%= @post.id %>_wrapper').remove();
+$('#post_<%= @post.id %>_wrapper').show();
