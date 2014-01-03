@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   
   before_action :require_user, except: [:new, :create, :show]
 
+  before_save do
+    generate_slug("username")
+  end
+
+  include Slugs
+
   def new
     @user = User.new
   end
