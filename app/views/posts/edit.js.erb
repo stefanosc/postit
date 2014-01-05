@@ -1,23 +1,23 @@
-$('#post_<%= @post.id %>_wrapper').hide();
+$('#post_<%= @post.slug %>_wrapper').hide();
 
 var error_template="<%= escape_javascript(render 'shared/errors', obj: @post, ajax: true) %>";
 var post_form="<%= escape_javascript(render 'create_update_form', set_ajax: true) %>";
 
 
-if ($('#post_<%= @post.id %>_container #error_wrapper').length > 0) 
+if ($('#post_<%= @post.slug %>_container #error_wrapper').length > 0) 
   { 
     $('#error_wrapper').replaceWith(error_template); 
   }
 else 
   {
-   $('#edit_post_<%= @post.id %>_wrapper').before(error_template);
+   $('#edit_post_<%= @post.slug %>_wrapper').before(error_template);
   }
 
-if ($('#post_<%= @post.id %>_container #edit_post_<%= @post.id %>_wrapper').length > 0) 
+if ($('#post_<%= @post.slug %>_container #edit_post_<%= @post.slug %>_wrapper').length > 0) 
   { 
-    $('#edit_post_<%= @post.id %>_wrapper').replaceWith(post_form); 
+    $('#edit_post_<%= @post.slug %>_wrapper').replaceWith(post_form); 
   }
 else  
   {
-   $('#post_<%= @post.id %>_wrapper').before(post_form);
+   $('#post_<%= @post.slug %>_wrapper').before(post_form);
   }

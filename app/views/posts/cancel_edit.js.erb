@@ -1,7 +1,7 @@
-if ($('#post_<%= @post.id %>_container #error_wrapper').length > 0) 
+if ($('#post_<%= @post.slug %>_container #error_wrapper').length > 0) 
   { 
     $('#error_wrapper').remove();
   }
 
-$('#edit_post_<%= @post.id %>_wrapper').remove();
-$('#post_<%= @post.id %>_wrapper').show();
+$('#edit_post_<%= @post.slug %>_wrapper').remove();
+$('#post_<%= @post.slug %>_wrapper').show();

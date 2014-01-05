@@ -2,12 +2,6 @@ class CategoriesController < ApplicationController
 
   before_action :require_user, except: [:show, :index]
 
-  before_save do
-    generate_slug("name")
-  end
-
-  include Slugs
-
   def index
     @categories = Category.all
   end

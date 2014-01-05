@@ -1,13 +1,13 @@
 <%- post_view ||= false -%>
-  <div class="row post" id="post_<%= post.id %>_container">
-    <div class="span0 well text-center" id="vote_<%= post.id %>_wrapper">
+  <div class="row post" id="post_<%= post.slug %>_container">
+    <div class="span0 well text-center" id="vote_<%= post.slug %>_wrapper">
       <%- if logged_in? -%>
         <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
           <i class="icon-arrow-up"></i>
         <%- end -%>
         <br>
       <%- end -%>
-      <span id="post_<%= post.id %>_vote"><%= post.total_votes.to_s + ' vote'.pluralize(post.total_votes) %></span>
+      <span id="post_<%= post.slug %>_vote"><%= post.total_votes.to_s + ' vote'.pluralize(post.total_votes) %></span>
       <br>
       <%- if logged_in? -%>
         <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
@@ -16,7 +16,7 @@
       <%- end -%>
     </div>
 
-    <div class="span8 well" id="post_<%= post.id %>_wrapper">
+    <div class="span8 well" id="post_<%= post.slug %>_wrapper">
 
       <% if logged_in? && post.creator == current_user -%>
         <div class="btn-group pull-right">
