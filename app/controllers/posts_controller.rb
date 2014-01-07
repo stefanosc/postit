@@ -36,12 +36,15 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-
+    
+    @old_slug = @post.slug if !@post.nil? # track the slug before updating to identify div to replace in update.js.erb
+    
+    
 
     respond_to do |format|
       
       format.html {
+        @post.update(post_params)
         if @post.save
           flash[:notice] = "Your post was successfully updated"
           redirect_to posts_path
@@ -55,7 +58,7 @@ class PostsController < ApplicationController
           render :cancel_edit
           
         elsif params[:commit] == "Update Post"
-
+          @post.update(post_params)
           if @post.save
             render :update
           else
@@ -76,8 +79,14 @@ class PostsController < ApplicationController
     @vote = Vote.create(votable: @post, creator: current_user, vote: params[:vote])
 
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Your vote was registered' }
-      format.js
+      format.html { 
+        if @vote.valid?
+          redirect_to :back, notice: 'Your vote was registered'
+        else
+          flash[:error] = "You have already voted on this post"
+        end
+        }
+      format.js 
     end
 
 

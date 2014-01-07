@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new(user_params)
 
     if @user.save
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
 
     if current_user.save
       flash[:notice] = "You have successfully updated your profile"
-      redirect_to profile_path
+      redirect_to user_path
     else
       render :edit
     end
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :time_zone)
   end
 
 end

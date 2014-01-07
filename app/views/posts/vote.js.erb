@@ -1,1 +1,11 @@
-$('#post_<%= @post.slug %>_vote').html('<%= @post.total_votes.to_s + ' vote'.pluralize(@post.total_votes) %>');
+var error_template="<%= escape_javascript(render 'shared/errors', votable: "post", obj: @vote) %>";
+
+$(error_template).insertBefore('#post_<%= "#{@post.slug}" %>_container').hide().slideDown("slow", function() {
+  $(this).delay( 3000 ).slideUp( "slow", function() {
+     $(this).remove();
+  } );
+});
+
+<%- if  @vote.errors.blank? -%>
+  $('#post_<%= @post.slug %>_vote').html('<%= @post.total_votes.to_s + ' vote'.pluralize(@post.total_votes) %>');
+<%- end -%>

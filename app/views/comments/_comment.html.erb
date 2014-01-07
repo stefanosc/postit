@@ -1,5 +1,5 @@
   <% show_post ||= false %>
-  <div class="row comment">
+  <div class="row comment" id="comment-wrapper-<%= "#{comment.slug}" %>" >
     <div class="span0 well text-center">
       <%- if logged_in? -%>
         <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: :post, remote: true do %>

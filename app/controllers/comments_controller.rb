@@ -23,17 +23,18 @@ class CommentsController < ApplicationController
 
     
     respond_to do |format|
-      format.html { redirect_to :back, notice: "Your vote was registered"}
-      format.js
+      format.html {
+        if @vote.valid?
+          flash[:notice] = "Your vote was registered"
+        else
+          flash[:error] = "You have already voted on this comment"
+        end
+        redirect_to :back
+      }
+      format.js 
     end
 
-    # if @vote.valid?
-    #   flash[:notice] = "Your vote was registered"
-    # else
-    #   flash[:error] = "You have already voted on this comment"
-    # end
 
-    # redirect_to :back
   end
 
   private

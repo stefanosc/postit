@@ -13,5 +13,8 @@ class User < ActiveRecord::Base
 
   sluggable_column :username
 
+  def admin?
+    self.role.to_s.to_sym == :admin
+  end
 
 end

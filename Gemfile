@@ -22,8 +22,8 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'pry'  
-  # gem 'better_errors'
-  # gem "binding_of_caller"
+  gem 'better_errors'
+  gem "binding_of_caller"
   gem 'sqlite3'
   gem 'pg'
 end
