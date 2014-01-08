@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       
-      format.html {
+      format.html do
         @post.update(post_params)
         if @post.save
           flash[:notice] = "Your post was successfully updated"
@@ -51,9 +51,9 @@ class PostsController < ApplicationController
         else
           render :edit
         end
-      }
+      end
 
-      format.js {
+      format.js do
         if params[:commit] == "Cancel"
           render :cancel_edit
           
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
           end
 
         end
-      }
+      end
 
     end
 
@@ -79,13 +79,13 @@ class PostsController < ApplicationController
     @vote = Vote.create(votable: @post, creator: current_user, vote: params[:vote])
 
     respond_to do |format|
-      format.html { 
+      format.html do
         if @vote.valid?
           redirect_to :back, notice: 'Your vote was registered'
         else
           flash[:error] = "You have already voted on this post"
         end
-        }
+      end
       format.js 
     end
 

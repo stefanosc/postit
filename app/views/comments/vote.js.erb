@@ -1,11 +1,14 @@
-var error_template="<%= escape_javascript(render 'shared/errors', votable: "comment", obj: @vote) %>";
-
-$(error_template).insertBefore('#comment-wrapper-<%= "#{@comment.slug}" %>').hide().slideDown("slow", function() {
-  $('#error_wrapper').delay( 3000 ).slideUp( "slow", function() {
-      $(this).remove();
-    } );
-});
-
-<%- if  @vote.errors.blank? -%>
+<%- if  @vote.valid? -%>
   $('#comment_<%= @comment.id %>_vote').html('<%= @comment.total_votes.to_s + ' vote'.pluralize(@comment.total_votes) %>');
+
+<%- else -%>
+
+  var error_template="<%= escape_javascript(render 'shared/errors', votable: "comment", obj: @vote) %>";
+
+  $(error_template).insertBefore('#comment-wrapper-<%= "#{@comment.slug}" %>').hide().slideDown("slow", function() {
+    $('.error_wrapper').delay( 2300 ).slideUp( "slow", function() {
+        $(this).remove();
+      } );
+  });
+
 <%- end -%>

@@ -25,10 +25,3 @@ en:
     attributes:
       vote:
         creator: "You"
-        votable_type:
-    errors:
-      models:
-        vote:
-          attributes:
-            creator:
-              taken: "have already voted on this"
