@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You have logged in"
-      redirect_to session[:login_referrer]
+      redirect_to (session[:login_referrer] ? session[:login_referrer] : root_path)
       session[:login_referrer] = nil
     else
       flash.now[:error] = "Oops there was a problem with your username or password"

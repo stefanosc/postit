@@ -17,4 +17,10 @@ class User < ActiveRecord::Base
     self.role.to_s.to_sym == :admin
   end
 
+  def as_json(options = { })
+    json = {:name => username, :time_zone => time_zone} # whatever info you want to expose
+    json
+  end
+
 end
+

@@ -4,8 +4,20 @@ class PostsController < ApplicationController
   before_action :set_post, only:[:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index, :search]
 
-  def show
+  def show  
     @comment = Comment.new
+
+
+    respond_to do |format|
+      format.html
+      format.json do
+        if params[:author]
+          render json: @post.as_json(include_creator: true)
+        else
+          render json: @post
+        end
+     end
+    end
   end
 
   def index
@@ -75,7 +87,6 @@ class PostsController < ApplicationController
   end
 
   def vote
-    # binding.pry
     @vote = Vote.create(votable: @post, creator: current_user, vote: params[:vote])
 
     respond_to do |format|
@@ -118,6 +129,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :description, :url, category_ids: [])
     
   end
+
 
 end
 
