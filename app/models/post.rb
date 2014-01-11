@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   
   # scope :votes, -> {order("votes desc")}
 
-  include VoteableStefanoS
+  include Voteable
   include Slugable
 
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'

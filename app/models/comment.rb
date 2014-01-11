@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 
-  include VoteableStefanoS
+  include Voteable
 
   belongs_to :user
   belongs_to :post
