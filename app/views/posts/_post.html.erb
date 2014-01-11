@@ -18,7 +18,7 @@
 
     <div class="span8 well" id="post_<%= post.slug %>_wrapper">
 
-      <% if logged_in? and post.creator == current_user || current_user.admin? -%>
+      <% if logged_in? and (post.creator == current_user || current_user.admin?) -%>
         <div class="btn-group pull-right">
           <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
           <ul class="dropdown-menu">

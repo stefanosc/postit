@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
 
   
-  before_action :set_post, only:[:show, :edit, :update, :vote]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index, :search]
+  before_action :require_creator, only: [:edit, :update]
 
   def show  
     @comment = Comment.new
@@ -130,6 +131,9 @@ class PostsController < ApplicationController
     
   end
 
+  def require_creator
+    not_authorized unless logged_in? and (current_user == @post.creator || current_user.admin?)
+  end
 
 end
 
