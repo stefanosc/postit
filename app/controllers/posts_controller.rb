@@ -127,7 +127,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :url, category_ids: [])
+    params.require(:post).permit(:title, :description, :url, :vote, category_ids: [])
     
   end
 
@@ -136,6 +136,3 @@ class PostsController < ApplicationController
   end
 
 end
-
-
-# Create all the typical actions for the Post resource (index, show, new, create, edit, update). Use model backed forms to create and edit post objects. Also extract the post form to a partial, to be used by both the new and edit templates. Add a validation and make sure the validation fires and you display the error on the template.
