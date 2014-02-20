@@ -3,7 +3,7 @@ module Slugable
   extend ActiveSupport::Concern
 
   included do
-    before_save :generate_slug!
+    after_validation :generate_slug!
     class_attribute :slug_column
   end
 
