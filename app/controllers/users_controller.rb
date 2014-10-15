@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   before_action :require_user, except: [:new, :create, :show]
 
   def new
@@ -14,13 +14,13 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      render :new  
+      render :new
     end
 
   end
 
   def show
-    @user = User.find_by_slug(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def edit
